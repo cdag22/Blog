@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import serialize from 'serialize-javascript';
 
-const CreatePostForm = ({ title, body, number, isDisable, onTitleChange, onBodyChange, onCreateNewPost }) => {
+const CreatePostForm = ({ number, isDisable, onTitleChange, onBodyChange, onCreateNewPost }) => {
 
   let titleRef = React.createRef();
   let bodyRef = React.createRef();
@@ -19,9 +20,10 @@ const CreatePostForm = ({ title, body, number, isDisable, onTitleChange, onBodyC
       </div>
       <div className="form-group">
         <textarea
-          className="form-control"
+          className="form-control create-post-body"
           cols="50"
           rows="10"
+          placeholder={"Today I..."}
           ref={bodyRef}
           onChange={(e) => (e.preventDefault(), onBodyChange(bodyRef.current.value))}
         >
@@ -29,15 +31,15 @@ const CreatePostForm = ({ title, body, number, isDisable, onTitleChange, onBodyC
       </div>
       <Link
         to="/posts"
-        className="btn btn-large btn-block bg-blue"
+        className="btn btn-block create-post-btn"
         onClick={() => onCreateNewPost({
-          title: titleRef.current.value,
-          body: bodyRef.current.value,
+          title: serialize(titleRef.current.value),
+          body: serialize(bodyRef.current.value),
           number,
           isDisable
         })}
         >
-        Create
+        Create new post
       </Link>
     </form>
   );

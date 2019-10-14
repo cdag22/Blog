@@ -4,7 +4,7 @@ import React from 'react';
 const CreatePostPreview = ({ title, body, number, isDisabled }) => {
 
   return (
-    <div className="post-container">
+    <div className="post-container preview-box">
       <h3
         className="post-title"
       >
@@ -15,18 +15,6 @@ const CreatePostPreview = ({ title, body, number, isDisabled }) => {
       >
         {body}
       </div>
-      {/* <div className="post-buttons">
-        <button
-          className="btn btn-lg btn-outline-warning"
-        >
-          Edit
-        </button>
-        <button
-          className="btn btn-lg btn-outline-danger"
-        >
-          Delete
-        </button>
-      </div> */}
     </div>
   );
 };

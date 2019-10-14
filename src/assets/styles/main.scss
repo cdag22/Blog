@@ -2,7 +2,7 @@
  *  IMPORTS
  *-----------------------------------------------*/
 @import "variables.scss";
-@import "~bootstrap/scss/bootstrap";
+// @import "~bootstrap/scss/bootstrap";
 
 /**----------------------------------------------
  *  GLOBAL STYLE
@@ -27,9 +27,21 @@ body {
 }
 
 /**----------------------------------------------
+ *  page-container
+ *-----------------------------------------------*/
+.page-container {
+  width: 95%;
+  margin: auto;
+}
+
+/**----------------------------------------------
  *  NAVBAR
  *-----------------------------------------------*/
-.custom-navbar {
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   border-bottom: 1px solid $dark;
 }
 
@@ -38,17 +50,21 @@ body {
   font-size: $font-size * 3;
   font-weight: $font-weight-regular;
   text-shadow: $font-shadow-thick;
+  display: flex;
+  width: 10rem;
+  align-items: center;
 }
 
 .brand-word {
-  border-bottom: 10px solid $blue-regular;
+  border-bottom: 5px solid $blue-regular;
 }
 
 .chevron-icon {
-  color: $blue-regular;
+  font-size: $font-size * 3.5;
+  border-bottom: 10px solid transparent;
 }
 
-.nav-custom-div {
+.nav-list-container {
   width: 100%;
   display: flex;
   align-items: center;
@@ -56,12 +72,29 @@ body {
   font-size: $font-size * 2;
 }
 
-.navbar-custom {
+.navbar-list {
   width: 40rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin-left: -8rem;
+}
+
+.navbar-link {
+  color: $dark-gray;
+  font-weight: $font-weight-light;
+  border-bottom: 3px solid transparent;
+}
+
+.active {
+  color: $dark;
+  border-bottom: 3px solid $dark;
+  font-weight: $font-weight-regular;
+}
+
+a,
+::after {
+  text-decoration: none;
 }
 
 /**----------------------------------------------
@@ -71,11 +104,11 @@ body {
   background: url("../images/yellow.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 87.5vh;
+  height: 87vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: -1rem;
+  margin-bottom: 0;
 }
 
  .page-title {
@@ -94,26 +127,8 @@ body {
   flex-direction: column;
   justify-content: space-between;
   min-height: 50vh;
-  width: 1200px;
+  width: 70%;
   margin: auto;
-}
-
-@media (max-width: 1224px) {
-  .posts-box {
-    width: 800px;
-  }
-  .post-container {
-    width: 800px;
-  }
-}
-
-@media (max-width: 824px) {
-  .posts-box {
-    width: 450px;
-  }
-  .post-container {
-    width: 450px;
-  }
 }
 
 .posts-title {
@@ -125,7 +140,6 @@ body {
   background: $yellow;
   width: 18rem;
   border-radius: 0.25rem;
-  // box-shadow: 0 0.325rem .25rem rgba(25, 25, 25, 0.4);
 }
 
 .posts-title-start-span {
@@ -133,7 +147,6 @@ body {
 }
 
 .posts-title-span {
-  // color: $blue-regular;
   border-bottom: 10px solid $orange;
 }
 
@@ -161,7 +174,7 @@ body {
    align-items: center;
    justify-content: center;
    margin: auto;
-   border: 5px solid $dark;
+   border: 5px solid $gray;
    border-radius: 0.55rem;
    padding: 2rem;
    margin: 3rem 0;
@@ -173,16 +186,18 @@ body {
    align-self: flex-start;
    margin-left: 2rem;
    color: $dark;
-   border-bottom: 3px solid $teal;
+   border-bottom: 3px solid $green;
    margin-bottom: 0;
  }
 
  .post-body {
-   width: 100%;
    margin-top: 0;
-   text-indent: 3rem;
+   text-indent: 2rem;
    padding: 2rem;
+   margin: 2rem;
    text-shadow: none;
+   font-size: $font-size * 1.25;
+   line-height: 1.75rem;
    font-weight: $font-weight-light;
    outline: none;
    resize: none;
@@ -193,25 +208,109 @@ body {
    display: flex;
    justify-content: space-between;
    align-items: center;
-   padding: 5rem;
+   padding-right: 5rem;
    align-self: flex-end;
-   width: 21rem;
-   height: 8rem;
+   width: 13rem;
    font-size: $font-size * 1.5;
-   margin-bottom: -3rem;
-   margin-right: -5rem;
  }
 
  /**----------------------------------------------
  *  CREATE POST FORM
  *-----------------------------------------------*/
  .post-form-container {
-   width: 50rem;
+   width: 1200px;
    font-size: $font-size * 1.5;
    margin: auto;
    padding-top: 5rem;
  }
  
- .create-post-btn {
-   box-shadow: 0 1rem 1rem rgba(100, 100, 100, 0.4);
+.create-post-body {
+  height: 15vh;
+  outline: none;
+  resize: none;
+  overflow: auto;
+}
+
+ .preview-box {
+   min-height: 30vh;
  }
+
+ .form-control {
+   font-size: $font-size * 1.125;
+   color: $dark;
+   line-height: 1.25rem;
+   width: 100%;
+   margin: 1rem auto;
+   padding: 0.25rem;
+ }
+
+
+
+ .btn {
+   padding: 1rem;
+   background: transparent;
+   color: $white;
+   font-size: $font-size * 1.5;
+   outline: none;
+   border: none;
+   border-radius: 0.5rem;
+   cursor: pointer;
+ }
+
+ a.btn a.btn-block {
+  width: 1200px;
+}
+
+ .create-post-btn {
+  background: $blue-regular;
+  color: $white;
+  font-size: $font-size * 1.5;
+  padding: 0.5rem;
+  margin: 3.5rem auto 0 auto;
+ }
+
+ .btn-edit {
+   border: 3px solid $yellow;
+   color: $yellow;
+ }
+
+ .btn-delete {
+   border: 3px solid $orange;
+   color: $orange;
+ }
+
+ /**----------------------------------------------
+ *  SIZING MEDIA QUERIES
+ *-----------------------------------------------*/
+// @media (min-width: $smallest-width) {
+//   .page-container {
+//     width: $smallest-width * 0.95;
+//   }
+// }
+
+// // Medium devices (tablets, 768px and up)
+// @media (min-width: $small-width) {
+//   .page-container {
+//     width: $small-width * 0.95;
+//   }
+// }
+
+// // Large devices (desktops, 992px and up)
+// @media (min-width: $medium-width) {
+//   .page-container {
+//     width: $medium-width * 0.95;
+//   }
+// }
+
+// // Extra large devices (large desktops, 1200px and up)
+// @media (min-width: $large-width) {
+//   .page-container {
+//     width: $large-width * 0.95;
+//   }
+// }
+
+// @media (min-width: $largest-width) {
+//   .page-container {
+//     width: $largest-width * 0.95;
+//   }
+// }

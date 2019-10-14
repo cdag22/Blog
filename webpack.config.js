@@ -1,10 +1,12 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 
-const moduleList = ['@babel/polyfill', 'react-router-dom', 'react', 'react-dom', 'bootstrap', 'popper.js', 'jquery', 'react-redux', 'redux', 'redux-thunk'];
+const moduleList = ['@babel/polyfill', 'react-router-dom', 'react', 'react-dom', 'react-redux', 'redux', 'redux-thunk', 'serialize-javascript'];
 
 
 module.exports = {
@@ -27,22 +29,24 @@ module.exports = {
       },
       {
         test: /\.(scss)$/,
-        use: [{
-          loader: 'style-loader', // inject CSS to page
-        }, {
-          loader: 'css-loader', // translates CSS into CommonJS modules
-        }, {
-          loader: 'postcss-loader', // Run postcss actions
-          options: {
-            plugins: function () { // postcss plugins, can be exported to postcss.config.js
-              return [
-                require('autoprefixer')
-              ];
+        use: [
+          'style-loader',
+          // MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader', // translates CSS into CommonJS modules
+          }, {
+            loader: 'postcss-loader', // Run postcss actions
+            options: {
+              plugins: function () { // postcss plugins, can be exported to postcss.config.js
+                return [
+                  require('autoprefixer')
+                ];
+              }
             }
+          }, {
+            loader: 'sass-loader' // compiles Sass to CSS
           }
-        }, {
-          loader: 'sass-loader' // compiles Sass to CSS
-        }]
+        ]
       },
       {
         test: /\.(png|jpe?g|svg)$/,
@@ -75,9 +79,17 @@ module.exports = {
   },
   plugins: [
     // new BundleAnalyzerPlugin(),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // all options are optional
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+      ignoreOrder: false, // Enable to remove warnings about conflicting order
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.join(__dirname, 'src', 'assets', 'template.html'),
     }),
+    
   ]
 };

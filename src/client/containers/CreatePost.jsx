@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import CreatePostForm from './CreatePostForm.jsx';
-import CreatePostPreview from './CreatePostPreview.jsx';
+import CreatePostForm from '../components/CreatePostForm.jsx';
+import CreatePostPreview from '../components/CreatePostPreview.jsx';
 
 import { createPost, newPostTitleChange, newPostBodyChange } from '../actionCreators';
 

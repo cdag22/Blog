@@ -19,13 +19,13 @@ const Post = ({ title, body, number, isDisabled, onEditClick, onUpdateClick, onD
       </div>
       <div className="post-buttons">
         <button
-          className="btn btn-lg btn-outline-warning"
+          className="btn btn-edit"
           onClick={editSave}
         >
           {isDisabled ? 'Edit' : 'Save'}
         </button>
         <button
-          className="btn btn-lg btn-outline-danger"
+          className="btn btn-delete"
           onClick={(e) => (e.preventDefault(), onDeleteClick(post))}
         >
           Delete

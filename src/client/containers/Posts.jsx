@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Post from './Post.jsx';
+import Post from '../components/Post.jsx';
 import { editPost, updatePost, deletePost } from '../actionCreators';
 
 const Posts = ({ posts, onEditClick, onUpdateClick, onDeleteClick }) => {
