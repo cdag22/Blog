@@ -2,27 +2,38 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import CreatePostForm from './CreatePostForm.jsx';
-import Post from './Post.jsx';
+import CreatePostPreview from './CreatePostPreview.jsx';
 
-const CreatePost = ({ }) => {
+import { createPost, newPostTitleChange, newPostBodyChange } from '../actionCreators';
+
+const CreatePost = ({ newPost, onTitleChange, onBodyChange, onCreateNewPost }) => {
 
   return (
     <div className="posts-box">
-      <CreatePostForm />
-      <Post />
+      <CreatePostForm
+        {...newPost}
+        onTitleChange={onTitleChange}
+        onBodyChange={onBodyChange}
+        onCreateNewPost={onCreateNewPost}
+      />
+      <CreatePostPreview
+        {...newPost}
+      />
     </div>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    posts: state.posts,
+    newPost: state.newPost,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    onTitleChange: title => dispatch(newPostTitleChange(title)),
+    onBodyChange: body => dispatch(newPostBodyChange(body)),
+    onCreateNewPost: post => dispatch(createPost(post)),
   };
 };
 

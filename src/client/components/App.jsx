@@ -11,10 +11,10 @@ const App = () => (
   <div className="container-fluid">
       <Navigation />
       <Switch>
-        {/* <Route exact path="/">
-          <Main />
-        </Route> */}
         <Route exact path="/">
+          <Main />
+        </Route>
+        <Route exact path="/posts">
           <Posts />
         </Route>
         <Route exact path="/createPost">

@@ -44,6 +44,14 @@ module.exports = {
           loader: 'sass-loader' // compiles Sass to CSS
         }]
       },
+      {
+        test: /\.(png|jpe?g|svg)$/,
+        exclude: /node_modules/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]'
+        }
+      }
     ]
   },
   optimization: {

@@ -11,10 +11,18 @@ const posts = Array.from({ length: 3}, (_, number) => {
     body: faker.lorem.paragraphs(),
     isDisabled: true,
   };
-})
+});
+
+const newPost = {
+  title: '',
+  body: '',
+  number: posts.length,
+  isDisabled: true,
+}
 
 const initialState = {
-  posts
+  posts,
+  newPost
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

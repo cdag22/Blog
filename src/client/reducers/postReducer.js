@@ -6,8 +6,14 @@ export default function postReducer (posts = [], action) {
 
   switch(action.type) {
     case actions.CREATE_POST:
+      
       postsCopy.push(action.post);
-      return postsCopy;
+      return postsCopy.map((post) => {
+        return {
+          ...post,
+          isDisabled: true,
+        };
+      });
     case actions.EDIT_POST:
       postsCopy[index].isDisabled = false;
       return postsCopy;

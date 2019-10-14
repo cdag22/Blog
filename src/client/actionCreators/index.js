@@ -27,3 +27,17 @@ export const deletePost = post => {
     post,
   };
 };
+
+export const newPostTitleChange = title => {
+  return {
+    type: actions.NEW_POST_TITLE_CHANGE,
+    payload: title,
+  };
+};
+
+export const newPostBodyChange = body => {
+  return {
+    type: actions.NEW_POST_BODY_CHANGE,
+    payload: body,
+  };
+};
