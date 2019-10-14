@@ -1,12 +1,36 @@
 import React from 'react';
-import faker from 'faker';
 
-const Post = ({ }) => {
+const Post = ({ title, body, number, isDisabled, onEditClick, onUpdateClick, onDeleteClick }) => {
+
+  const post = { title, body, number, isDisabled };
+
+  let editSave = isDisabled ? 
+    (e) => (e.preventDefault(), onEditClick(post)) :
+    (e) => (e.preventDefault(), onUpdateClick(post));
 
   return (
     <div className="post-container">
-      <h3 className="post-title">title</h3>
-      <p className="post-body">{faker.lorem.paragraphs()}</p>
+      <h3 className="post-title">{title}</h3>
+      <div
+        className="post-body"
+        contentEditable={(!isDisabled).toString()}
+      >
+        {body}
+      </div>
+      <div className="post-buttons">
+        <button
+          className="btn btn-lg btn-outline-warning"
+          onClick={editSave}
+        >
+          {isDisabled ? 'Edit' : 'Save'}
+        </button>
+        <button
+          className="btn btn-lg btn-outline-danger"
+          onClick={(e) => (e.preventDefault(), onDeleteClick(post))}
+        >
+          Delete
+        </button>
+      </div>
     </div>
   );
 };

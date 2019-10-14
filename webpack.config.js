@@ -4,16 +4,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 
-const moduleList = ['@babel/polyfill', 'react-router-dom', 'react', 'react-dom', 'bootstrap', 'popper.js', 'jquery'];
+const moduleList = ['@babel/polyfill', 'react-router-dom', 'react', 'react-dom', 'bootstrap', 'popper.js', 'jquery', 'react-redux', 'redux', 'redux-thunk'];
 
 
 module.exports = {
   mode: 'development',
   entry: {
-    client: [
-      '@babel/polyfill',
-      path.join(__dirname, 'src', 'client', 'index.jsx'),
-    ],
+    client: path.join(__dirname, 'src', 'client', 'index.jsx'),
   },
   output: {
     filename: '[name].bundle.js',

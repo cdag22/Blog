@@ -33,6 +33,10 @@ body {
 /**----------------------------------------------
  *  NAVBAR
  *-----------------------------------------------*/
+.custom-navbar {
+  border-bottom: 1px solid $dark;
+}
+
 .navbar-brand {
   color: $blue-regular;
   font-size: $font-size * 3;
@@ -106,9 +110,9 @@ body {
  .page-title {
   font-size: $font-size * 8;
   font-weight: 400;
-  text-shadow: $font-shadow-regular;
+  text-shadow: $title-shadow;
   text-align: center;
-  color: $dark;
+  color: #000;
  }
 
 /**----------------------------------------------
@@ -117,7 +121,6 @@ body {
 .posts-box {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
   min-height: 50vh;
   width: 1200px;
@@ -129,7 +132,35 @@ body {
   align-self: flex-start;
   margin: 2rem 0;
   text-shadow: $font-shadow-regular;
-  border-bottom: 3px solid $blue-regular;
+  color: $white;
+  background: $yellow;
+  width: 18rem;
+  border-radius: 0.25rem;
+  // box-shadow: 0 0.325rem .25rem rgba(25, 25, 25, 0.4);
+}
+
+.posts-title-start-span {
+  color: $blue-regular;
+}
+
+.posts-title-span {
+  // color: $blue-regular;
+  border-bottom: 10px solid $orange;
+}
+
+.post-outer-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+}
+
+.post-number {
+  font-size: $font-size * 4;
+  font-weight: 500;
+  margin-right: 5rem;
+  color: $orange;
 }
 
  /**----------------------------------------------
@@ -162,6 +193,22 @@ body {
    padding: 2rem;
    text-shadow: none;
    font-weight: $font-weight-light;
+   outline: none;
+   resize: none;
+   overflow: auto;
+ }
+
+ .post-buttons {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 5rem;
+   align-self: flex-end;
+   width: 21rem;
+   height: 8rem;
+   font-size: $font-size * 1.5;
+   margin-bottom: -3rem;
+   margin-right: -5rem;
  }
 
  /**----------------------------------------------
