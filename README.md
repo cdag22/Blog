@@ -1,4 +1,4 @@
-# Isomorphic React, Redux, & Custom CSS Blog App
+# Isomorphic React, Redux Blog App
 
 ### [View deployed app](https://isomorphic-blog.herokuapp.com/)
 
