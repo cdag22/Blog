@@ -1,25 +1,11 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
-
-const moduleList = ['@babel/polyfill', 'react-router-dom', 'react', 'react-dom', 'react-redux', 'redux', 'redux-thunk', 'serialize-javascript'];
-
 
 module.exports = {
   mode: 'development',
-  entry: {
-    client: path.join(__dirname, 'src', 'client', 'index.jsx'),
-  },
-  output: {
-    filename: '[name].bundle.js',
-    path: path.join(__dirname, 'public'),
-    chunkFilename: '[name].bundle.js',
-    publicPath: '/',
-  },
   module: {
     rules: [
       {
@@ -28,24 +14,13 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
-        test: /\.(scss)$/,
+        test: /\.s?css$/,
+        exclude: /node_modules/,
         use: [
-          'style-loader',
-          // MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader', // translates CSS into CommonJS modules
-          }, {
-            loader: 'postcss-loader', // Run postcss actions
-            options: {
-              plugins: function () { // postcss plugins, can be exported to postcss.config.js
-                return [
-                  require('autoprefixer')
-                ];
-              }
-            }
-          }, {
-            loader: 'sass-loader' // compiles Sass to CSS
-          }
+          'isomorphic-style-loader',
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
         ]
       },
       {
@@ -54,42 +29,15 @@ module.exports = {
         loader: 'file-loader',
         options: {
           name: '[name].[ext]'
-        }
-      }
-    ]
-  },
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin(),
+        },
+      },
     ],
-    runtimeChunk: 'single',
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: new RegExp(
-            `[\\/]node_modules[\\/](${moduleList.join("|")})[\\/]`
-          ),
-          chunks: 'initial',
-          name: 'vendors',
-          enforce: true
-        }
-      }
-    }
   },
   plugins: [
-    // new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // all options are optional
       filename: '[name].css',
       chunkFilename: '[id].css',
-      ignoreOrder: false, // Enable to remove warnings about conflicting order
+      ignoreOrder: false,
     }),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: path.join(__dirname, 'src', 'assets', 'template.html'),
-    }),
-    
   ]
 };

@@ -218,9 +218,7 @@ a,
  *  CREATE POST FORM
  *-----------------------------------------------*/
  .post-form-container {
-   width: 1200px;
    font-size: $font-size * 1.5;
-   margin: auto;
    padding-top: 5rem;
  }
  
@@ -233,6 +231,7 @@ a,
 
  .preview-box {
    min-height: 30vh;
+   width: 94%;
  }
 
  .form-control {
@@ -243,8 +242,6 @@ a,
    margin: 1rem auto;
    padding: 0.25rem;
  }
-
-
 
  .btn {
    padding: 1rem;
