@@ -1,2 +1,2 @@
-# Isomorphic React, Recux, Blog App
+# Isomorphic React, Redux, & Custom CSS Blog App
 
